@@ -114,6 +114,7 @@ class RandomHttpProxyMiddleware(HttpProxyMiddleware):
         for proxy in proxy_list:
             parse = urlparse(proxy)
             self.proxies[parse.scheme].append(proxy)
+        print(self.proxies)
 
     @classmethod
     def from_crawler(cls, crawler):
@@ -125,6 +126,7 @@ class RandomHttpProxyMiddleware(HttpProxyMiddleware):
         return cls(auth_encoding, http_proxy_list)
 
     def _set_proxy(self, request, scheme):
+        print("set_proxy")
         proxy = random.choice(self.proxies[scheme])
         print(proxy)
         request.meta["proxy"] = proxy

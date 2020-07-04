@@ -54,6 +54,8 @@ COOKIES_ENABLED = True
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
     "spiders.middlewares.SpidersDownloaderMiddleware": 543,
+    "scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware": None,
+    "scrapy.downloadermiddlewares.useragent.UserAgentMiddleware": None,
     "spiders.middlewares.RandomHttpProxyMiddleware": 400,
 }
 
