@@ -4,7 +4,6 @@ import urllib.parse
 import concurrent.futures
 import time
 
-
 HEADERS = {
     "accept": "application/json, text/javascript, */*; q=0.01",
     "accept-encoding": "gzip, deflate, br",
