@@ -1,4 +1,7 @@
-class Animal:
+from abc import ABCMeta
+
+
+class Animal(metaclass=ABCMeta):
     def __init__(self, category, size, character):
         self.category = category
         self.size = size
