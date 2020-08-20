@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate
 
 class LoginForm(forms.Form):
     username = forms.CharField(label="Username")
-    password = forms.CharField(label="Password")
+    password = forms.CharField(label="Password", widget=forms.PasswordInput)
 
     def clean(self):
         cleaned_data = super().clean()
