@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{product.name}}</h1>
+    <div class="row">
+	    <div class="col-sm">
+    <ul>
+      <li>总评论数: {{product.comments.all|length}}</li>
+      <li>正面评论数: {{affirmative|length}}</li>
+      <li>负面评论数: {{negative|length}}</li>
+      <li>中性评论数: {{middle|length}}</li>
+    </ul>
+	    </div>
+	    <div class="col-sm">
+    {{graph | safe}}
+	    </div>
+    </div>
+    <table class="table table-sm">
+      {% for comment in product.comments.all %}
+      <tr>
+        <td>{{comment.content}}</td>
+	<td>{{comment.timestamp|date:"Y-m-d"}}</td>
+        <td style="width: 10%">
+          {% if comment.sentiments > 0.5 %} 正面 {% else %} 负面 {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <a href="{% url 'list_products' %}">Back</a>
+{% endblock content %}

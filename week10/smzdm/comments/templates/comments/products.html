@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+    <table class="table">
+	    <thead>
+		    <tr>
+			    <th>产品</th>
+			    <th>评论数</th>
+		    </tr>
+	    </thead>
+      {% for product in products %}
+      <tr>
+        <td>
+          <a href="{% url 'product_detail' product.id %}">
+            {{product.name}}
+          </a>
+        </td>
+        <td>{{product.comments.all|length}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <a href="{% url 'home' %}">Back Home</a>
+{% endblock content %}

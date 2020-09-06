@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="search">
+	<form class="form-inline" method="get" action="{% url 'list_comments' %}">
+		<div class="form-group mx-sm-3 mb-2">
+			<input id="start_date" type="text" class="form-control" name="start_date" placeholder="开始日期">
+		</div>
+		<div class="form-group mx-sm-3 mb-2">
+			<input id="end_date" type="text" class="form-control" name="end_date" placeholder="结束日期">
+		</div>
+		<div class="form-group mx-sm-3 mb-2">
+			<input type="input" name="term" class="form-control" placeholder="关键字">
+		</div>
+		<button type="submit" class="btn btn-primary mb-2">Search</button>
+	</form>
+</div>
+<table class="table">
+	{% for comment in comments %}
+	<tr>
+		<td style="width: 20%">{{comment.product.name}}</td>
+		<td>{{comment.content}}</td>
+		<td style="width: 15%">{{comment.timestamp|date:"Y-m-d"}}</td>
+		<td style="width: 8%">
+			{% if comment.sentiments > 0.5 %} 正面 {% else %} 负面 {% endif %}
+		</td>
+	</tr>
+	{% endfor %}
+</table>
+<a href="{% url 'home' %}">Back Home</a>
+
+<script>
+	$('#start_date').datepicker({format: "yyyy-mm-dd"});
+	$('#end_date').datepicker({format: "yyyy-mm-dd"});
+</script>
+{% endblock content %}
